@@ -1,0 +1,491 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SICModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="COMPAÑIA">
+          <Key>
+            <PropertyRef Name="NOMBRE" />
+          </Key>
+          <Property Name="NOMBRE" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ENVIA_ENERGIA">
+          <Key>
+            <PropertyRef Name="RED" />
+          </Key>
+          <Property Name="RED" Type="int" Nullable="false" />
+          <Property Name="VOLUMEN" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EOLICA">
+          <Key>
+            <PropertyRef Name="NOMBRE_PROD" />
+          </Key>
+          <Property Name="NOMBRE_PROD" Type="int" Nullable="false" />
+          <Property Name="GENERADORES" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="SUPERFICIE" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="PROD_PROMEDIO" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EST_PRIMARIA">
+          <Key>
+            <PropertyRef Name="NOMBRE_EST_PRIM" />
+          </Key>
+          <Property Name="NOMBRE_EST_PRIM" Type="int" Nullable="false" />
+          <Property Name="TRANSFORMADORES" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EST_PRODUCTOR">
+          <Key>
+            <PropertyRef Name="NOMBRE_EST_PRIM" />
+            <PropertyRef Name="NOMBRE_PROD" />
+          </Key>
+          <Property Name="NOMBRE_EST_PRIM" Type="int" Nullable="false" />
+          <Property Name="NOMBRE_PROD" Type="int" Nullable="false" />
+          <Property Name="FECHA" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="CANTIDAD" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LINEA">
+          <Key>
+            <PropertyRef Name="NUM_LINEA" />
+            <PropertyRef Name="RED" />
+          </Key>
+          <Property Name="NUM_LINEA" Type="int" Nullable="false" />
+          <Property Name="RED" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRESA">
+          <Key>
+            <PropertyRef Name="NOMBRE_PROD" />
+          </Key>
+          <Property Name="NOMBRE_PROD" Type="int" Nullable="false" />
+          <Property Name="CAP_MAXIMA" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="AREA" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="TURBINAS" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRODUCTOR">
+          <Key>
+            <PropertyRef Name="NOMBRE_PROD" />
+          </Key>
+          <Property Name="NOMBRE_PROD" Type="int" Nullable="false" />
+          <Property Name="PROD_PROMEDIO" Type="int" Nullable="false" />
+          <Property Name="PROD_MAXIMA" Type="int" Nullable="false" />
+          <Property Name="FECHA_INICIO" Type="date" Nullable="false" />
+          <Property Name="TIPO" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PROVINCIA">
+          <Key>
+            <PropertyRef Name="CODIGO_PROV" />
+          </Key>
+          <Property Name="CODIGO_PROV" Type="int" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RED">
+          <Key>
+            <PropertyRef Name="RED" />
+          </Key>
+          <Property Name="RED" Type="int" Nullable="false" />
+          <Property Name="NOMBRE_EST_PRIM" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RED_COMPAÑIA">
+          <Key>
+            <PropertyRef Name="NOMBRE" />
+            <PropertyRef Name="RED" />
+          </Key>
+          <Property Name="NOMBRE" Type="int" Nullable="false" />
+          <Property Name="RED" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SOLAR">
+          <Key>
+            <PropertyRef Name="NOMBRE_PROD" />
+          </Key>
+          <Property Name="NOMBRE_PROD" Type="int" Nullable="false" />
+          <Property Name="SUPERFICIE" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="HORAS_SOL" Type="int" Nullable="false" />
+          <Property Name="TIPO" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SUBEST_ZONA">
+          <Key>
+            <PropertyRef Name="NUM_SUBEST" />
+            <PropertyRef Name="CODIGO" />
+          </Key>
+          <Property Name="NUM_SUBEST" Type="int" Nullable="false" />
+          <Property Name="CODIGO" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SUBESTACION">
+          <Key>
+            <PropertyRef Name="NUM_SUBEST" />
+          </Key>
+          <Property Name="NUM_SUBEST" Type="int" Nullable="false" />
+          <Property Name="NUM_LINEA" Type="int" Nullable="false" />
+          <Property Name="RED" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TERMICA">
+          <Key>
+            <PropertyRef Name="NOMBRE_PROD" />
+          </Key>
+          <Property Name="NOMBRE_PROD" Type="int" Nullable="false" />
+          <Property Name="CARBON" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="HORNOS" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="GASES" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ZONA">
+          <Key>
+            <PropertyRef Name="CODIGO" />
+            <PropertyRef Name="CODIGO_PROV" />
+          </Key>
+          <Property Name="CODIGO" Type="int" Nullable="false" />
+          <Property Name="CODIGO_PROV" Type="int" Nullable="false" />
+          <Property Name="CONS_PROMEDIO" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="NUM_PART" Type="int" Nullable="false" />
+          <Property Name="NUM_EMP" Type="int" Nullable="false" />
+          <Property Name="NUM_INST" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="SICModelStoreContainer">
+          <EntitySet Name="COMPAÑIA" EntityType="Self.COMPAÑIA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ENVIA_ENERGIA" EntityType="Self.ENVIA_ENERGIA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EOLICA" EntityType="Self.EOLICA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EST_PRIMARIA" EntityType="Self.EST_PRIMARIA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EST_PRODUCTOR" EntityType="Self.EST_PRODUCTOR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LINEA" EntityType="Self.LINEA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRESA" EntityType="Self.PRESA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRODUCTOR" EntityType="Self.PRODUCTOR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PROVINCIA" EntityType="Self.PROVINCIA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RED" EntityType="Self.RED" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RED_COMPAÑIA" EntityType="Self.RED_COMPAÑIA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SOLAR" EntityType="Self.SOLAR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SUBEST_ZONA" EntityType="Self.SUBEST_ZONA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SUBESTACION" EntityType="Self.SUBESTACION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TERMICA" EntityType="Self.TERMICA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZONA" EntityType="Self.ZONA" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SICModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="COMPAÑIA">
+          <Key>
+            <PropertyRef Name="NOMBRE" />
+          </Key>
+          <Property Name="NOMBRE" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ENVIA_ENERGIA">
+          <Key>
+            <PropertyRef Name="RED" />
+          </Key>
+          <Property Name="RED" Type="Int32" Nullable="false" />
+          <Property Name="VOLUMEN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EOLICA">
+          <Key>
+            <PropertyRef Name="NOMBRE_PROD" />
+          </Key>
+          <Property Name="NOMBRE_PROD" Type="Int32" Nullable="false" />
+          <Property Name="GENERADORES" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SUPERFICIE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PROD_PROMEDIO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EST_PRIMARIA">
+          <Key>
+            <PropertyRef Name="NOMBRE_EST_PRIM" />
+          </Key>
+          <Property Name="NOMBRE_EST_PRIM" Type="Int32" Nullable="false" />
+          <Property Name="TRANSFORMADORES" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EST_PRODUCTOR">
+          <Key>
+            <PropertyRef Name="NOMBRE_EST_PRIM" />
+            <PropertyRef Name="NOMBRE_PROD" />
+          </Key>
+          <Property Name="NOMBRE_EST_PRIM" Type="Int32" Nullable="false" />
+          <Property Name="NOMBRE_PROD" Type="Int32" Nullable="false" />
+          <Property Name="FECHA" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CANTIDAD" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LINEA">
+          <Key>
+            <PropertyRef Name="NUM_LINEA" />
+            <PropertyRef Name="RED" />
+          </Key>
+          <Property Name="NUM_LINEA" Type="Int32" Nullable="false" />
+          <Property Name="RED" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRESA">
+          <Key>
+            <PropertyRef Name="NOMBRE_PROD" />
+          </Key>
+          <Property Name="NOMBRE_PROD" Type="Int32" Nullable="false" />
+          <Property Name="CAP_MAXIMA" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AREA" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TURBINAS" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRODUCTOR">
+          <Key>
+            <PropertyRef Name="NOMBRE_PROD" />
+          </Key>
+          <Property Name="NOMBRE_PROD" Type="Int32" Nullable="false" />
+          <Property Name="PROD_PROMEDIO" Type="Int32" Nullable="false" />
+          <Property Name="PROD_MAXIMA" Type="Int32" Nullable="false" />
+          <Property Name="FECHA_INICIO" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TIPO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PROVINCIA">
+          <Key>
+            <PropertyRef Name="CODIGO_PROV" />
+          </Key>
+          <Property Name="CODIGO_PROV" Type="Int32" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RED">
+          <Key>
+            <PropertyRef Name="RED1" />
+          </Key>
+          <Property Name="RED1" Type="Int32" Nullable="false" />
+          <Property Name="NOMBRE_EST_PRIM" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RED_COMPAÑIA">
+          <Key>
+            <PropertyRef Name="NOMBRE" />
+            <PropertyRef Name="RED" />
+          </Key>
+          <Property Name="NOMBRE" Type="Int32" Nullable="false" />
+          <Property Name="RED" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SOLAR">
+          <Key>
+            <PropertyRef Name="NOMBRE_PROD" />
+          </Key>
+          <Property Name="NOMBRE_PROD" Type="Int32" Nullable="false" />
+          <Property Name="SUPERFICIE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HORAS_SOL" Type="Int32" Nullable="false" />
+          <Property Name="TIPO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SUBEST_ZONA">
+          <Key>
+            <PropertyRef Name="NUM_SUBEST" />
+            <PropertyRef Name="CODIGO" />
+          </Key>
+          <Property Name="NUM_SUBEST" Type="Int32" Nullable="false" />
+          <Property Name="CODIGO" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SUBESTACION">
+          <Key>
+            <PropertyRef Name="NUM_SUBEST" />
+          </Key>
+          <Property Name="NUM_SUBEST" Type="Int32" Nullable="false" />
+          <Property Name="NUM_LINEA" Type="Int32" Nullable="false" />
+          <Property Name="RED" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TERMICA">
+          <Key>
+            <PropertyRef Name="NOMBRE_PROD" />
+          </Key>
+          <Property Name="NOMBRE_PROD" Type="Int32" Nullable="false" />
+          <Property Name="CARBON" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HORNOS" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GASES" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ZONA">
+          <Key>
+            <PropertyRef Name="CODIGO" />
+            <PropertyRef Name="CODIGO_PROV" />
+          </Key>
+          <Property Name="CODIGO" Type="Int32" Nullable="false" />
+          <Property Name="CODIGO_PROV" Type="Int32" Nullable="false" />
+          <Property Name="CONS_PROMEDIO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NUM_PART" Type="Int32" Nullable="false" />
+          <Property Name="NUM_EMP" Type="Int32" Nullable="false" />
+          <Property Name="NUM_INST" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="SICEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="COMPAÑIA" EntityType="Self.COMPAÑIA" />
+          <EntitySet Name="ENVIA_ENERGIA" EntityType="Self.ENVIA_ENERGIA" />
+          <EntitySet Name="EOLICA" EntityType="Self.EOLICA" />
+          <EntitySet Name="EST_PRIMARIA" EntityType="Self.EST_PRIMARIA" />
+          <EntitySet Name="EST_PRODUCTOR" EntityType="Self.EST_PRODUCTOR" />
+          <EntitySet Name="LINEA" EntityType="Self.LINEA" />
+          <EntitySet Name="PRESA" EntityType="Self.PRESA" />
+          <EntitySet Name="PRODUCTOR" EntityType="Self.PRODUCTOR" />
+          <EntitySet Name="PROVINCIA" EntityType="Self.PROVINCIA" />
+          <EntitySet Name="RED" EntityType="Self.RED" />
+          <EntitySet Name="RED_COMPAÑIA" EntityType="Self.RED_COMPAÑIA" />
+          <EntitySet Name="SOLAR" EntityType="Self.SOLAR" />
+          <EntitySet Name="SUBEST_ZONA" EntityType="Self.SUBEST_ZONA" />
+          <EntitySet Name="SUBESTACION" EntityType="Self.SUBESTACION" />
+          <EntitySet Name="TERMICA" EntityType="Self.TERMICA" />
+          <EntitySet Name="ZONA" EntityType="Self.ZONA" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SICModelStoreContainer" CdmEntityContainer="SICEntities">
+          <EntitySetMapping Name="COMPAÑIA">
+            <EntityTypeMapping TypeName="SICModel.COMPAÑIA">
+              <MappingFragment StoreEntitySet="COMPAÑIA">
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ENVIA_ENERGIA">
+            <EntityTypeMapping TypeName="SICModel.ENVIA_ENERGIA">
+              <MappingFragment StoreEntitySet="ENVIA_ENERGIA">
+                <ScalarProperty Name="RED" ColumnName="RED" />
+                <ScalarProperty Name="VOLUMEN" ColumnName="VOLUMEN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EOLICA">
+            <EntityTypeMapping TypeName="SICModel.EOLICA">
+              <MappingFragment StoreEntitySet="EOLICA">
+                <ScalarProperty Name="NOMBRE_PROD" ColumnName="NOMBRE_PROD" />
+                <ScalarProperty Name="GENERADORES" ColumnName="GENERADORES" />
+                <ScalarProperty Name="SUPERFICIE" ColumnName="SUPERFICIE" />
+                <ScalarProperty Name="PROD_PROMEDIO" ColumnName="PROD_PROMEDIO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EST_PRIMARIA">
+            <EntityTypeMapping TypeName="SICModel.EST_PRIMARIA">
+              <MappingFragment StoreEntitySet="EST_PRIMARIA">
+                <ScalarProperty Name="NOMBRE_EST_PRIM" ColumnName="NOMBRE_EST_PRIM" />
+                <ScalarProperty Name="TRANSFORMADORES" ColumnName="TRANSFORMADORES" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EST_PRODUCTOR">
+            <EntityTypeMapping TypeName="SICModel.EST_PRODUCTOR">
+              <MappingFragment StoreEntitySet="EST_PRODUCTOR">
+                <ScalarProperty Name="NOMBRE_EST_PRIM" ColumnName="NOMBRE_EST_PRIM" />
+                <ScalarProperty Name="NOMBRE_PROD" ColumnName="NOMBRE_PROD" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LINEA">
+            <EntityTypeMapping TypeName="SICModel.LINEA">
+              <MappingFragment StoreEntitySet="LINEA">
+                <ScalarProperty Name="NUM_LINEA" ColumnName="NUM_LINEA" />
+                <ScalarProperty Name="RED" ColumnName="RED" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRESA">
+            <EntityTypeMapping TypeName="SICModel.PRESA">
+              <MappingFragment StoreEntitySet="PRESA">
+                <ScalarProperty Name="NOMBRE_PROD" ColumnName="NOMBRE_PROD" />
+                <ScalarProperty Name="CAP_MAXIMA" ColumnName="CAP_MAXIMA" />
+                <ScalarProperty Name="AREA" ColumnName="AREA" />
+                <ScalarProperty Name="TURBINAS" ColumnName="TURBINAS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCTOR">
+            <EntityTypeMapping TypeName="SICModel.PRODUCTOR">
+              <MappingFragment StoreEntitySet="PRODUCTOR">
+                <ScalarProperty Name="NOMBRE_PROD" ColumnName="NOMBRE_PROD" />
+                <ScalarProperty Name="PROD_PROMEDIO" ColumnName="PROD_PROMEDIO" />
+                <ScalarProperty Name="PROD_MAXIMA" ColumnName="PROD_MAXIMA" />
+                <ScalarProperty Name="FECHA_INICIO" ColumnName="FECHA_INICIO" />
+                <ScalarProperty Name="TIPO" ColumnName="TIPO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROVINCIA">
+            <EntityTypeMapping TypeName="SICModel.PROVINCIA">
+              <MappingFragment StoreEntitySet="PROVINCIA">
+                <ScalarProperty Name="CODIGO_PROV" ColumnName="CODIGO_PROV" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RED">
+            <EntityTypeMapping TypeName="SICModel.RED">
+              <MappingFragment StoreEntitySet="RED">
+                <ScalarProperty Name="RED1" ColumnName="RED" />
+                <ScalarProperty Name="NOMBRE_EST_PRIM" ColumnName="NOMBRE_EST_PRIM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RED_COMPAÑIA">
+            <EntityTypeMapping TypeName="SICModel.RED_COMPAÑIA">
+              <MappingFragment StoreEntitySet="RED_COMPAÑIA">
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="RED" ColumnName="RED" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SOLAR">
+            <EntityTypeMapping TypeName="SICModel.SOLAR">
+              <MappingFragment StoreEntitySet="SOLAR">
+                <ScalarProperty Name="NOMBRE_PROD" ColumnName="NOMBRE_PROD" />
+                <ScalarProperty Name="SUPERFICIE" ColumnName="SUPERFICIE" />
+                <ScalarProperty Name="HORAS_SOL" ColumnName="HORAS_SOL" />
+                <ScalarProperty Name="TIPO" ColumnName="TIPO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SUBEST_ZONA">
+            <EntityTypeMapping TypeName="SICModel.SUBEST_ZONA">
+              <MappingFragment StoreEntitySet="SUBEST_ZONA">
+                <ScalarProperty Name="NUM_SUBEST" ColumnName="NUM_SUBEST" />
+                <ScalarProperty Name="CODIGO" ColumnName="CODIGO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SUBESTACION">
+            <EntityTypeMapping TypeName="SICModel.SUBESTACION">
+              <MappingFragment StoreEntitySet="SUBESTACION">
+                <ScalarProperty Name="NUM_SUBEST" ColumnName="NUM_SUBEST" />
+                <ScalarProperty Name="NUM_LINEA" ColumnName="NUM_LINEA" />
+                <ScalarProperty Name="RED" ColumnName="RED" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TERMICA">
+            <EntityTypeMapping TypeName="SICModel.TERMICA">
+              <MappingFragment StoreEntitySet="TERMICA">
+                <ScalarProperty Name="NOMBRE_PROD" ColumnName="NOMBRE_PROD" />
+                <ScalarProperty Name="CARBON" ColumnName="CARBON" />
+                <ScalarProperty Name="HORNOS" ColumnName="HORNOS" />
+                <ScalarProperty Name="GASES" ColumnName="GASES" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZONA">
+            <EntityTypeMapping TypeName="SICModel.ZONA">
+              <MappingFragment StoreEntitySet="ZONA">
+                <ScalarProperty Name="CODIGO" ColumnName="CODIGO" />
+                <ScalarProperty Name="CODIGO_PROV" ColumnName="CODIGO_PROV" />
+                <ScalarProperty Name="CONS_PROMEDIO" ColumnName="CONS_PROMEDIO" />
+                <ScalarProperty Name="NUM_PART" ColumnName="NUM_PART" />
+                <ScalarProperty Name="NUM_EMP" ColumnName="NUM_EMP" />
+                <ScalarProperty Name="NUM_INST" ColumnName="NUM_INST" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
